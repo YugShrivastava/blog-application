@@ -16,7 +16,7 @@ function Navbar() {
   }
   return (
     <div className="flex gap-20 w-full justify-center px-4 py-7 items-center">
-      <div className="text-4xl">LOGO</div>
+      <div className="text-4xl">BLOGIFY</div>
       <nav className="flex gap-10">
         {navLinks.map((link) => (
           <NavLink
