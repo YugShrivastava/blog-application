@@ -1,6 +1,6 @@
 const BlogModel = require('../models/blog.model');
 
-const addBlog = async (req, res) => {
+async function addBlog(req, res) {
     const blog = req.body.blog;
     console.log(blog);
 
@@ -23,9 +23,7 @@ const addBlog = async (req, res) => {
 async function getBlogWithId(req, res) {
     const blogId = req.headers.blogid;
     try {
-        const blog = await BlogModel.findOne({
-            _id: blogId
-        })
+        const blog = await BlogModel.findById(blogId).populate('createdBy');
         if (!blog?.title) {
             console.log('blog not found');
             return res.status(404).json({error: true, message: 'blog not found'})
