@@ -39,7 +39,18 @@ async function login(req, res) {
     return res.status(202).json({ token });
 }
 
+function verifyToken(req, res) {
+    const token = req.headers.authorization.split(' ')[1];
+    const user = validateToken(token);
+    if (!user) return res.status(404).json({
+        error: true,
+        message: "invalid token"
+    })
+    return res.status(202).json(user);
+}
+
 module.exports = {
     register,
-    login
+    login,
+    verifyToken
 }

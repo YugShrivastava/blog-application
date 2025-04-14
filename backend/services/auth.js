@@ -18,9 +18,14 @@ function createTokenForUser (user) {
 }
 
 function validateToken(token) {
+    try {
     const payload = jwt.verify(token, secret);
-
     return payload;
+    } catch (error) {
+        console.log('invalid token')
+        return false;
+    }
+
 }
 
 module.exports = {

@@ -8,8 +8,9 @@ import Home from './components/Home.jsx'
 import Login from './components/Login.jsx'
 import SignUp from './components/SignUp.jsx'
 import Profile from './components/Profile.jsx'
-import AddPosts from './components/AddPosts.jsx'
+import AddBlog from './components/AddBlog.jsx'
 import Logout from './components/Logout.jsx'
+import Blog from './components/Blog.jsx'
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <AuthLayout children={<Home />} authentication={false} />,
+        element: <Home />,
       },
       {
         path: "login",
@@ -29,8 +30,8 @@ const router = createBrowserRouter([
         element: <AuthLayout children={<SignUp />} authentication={false} />,
       },
       {
-        path: "add-posts",
-        element: <AuthLayout children={<AddPosts />} authentication={true} />,
+        path: "add-blog",
+        element: <AuthLayout children={<AddBlog />} authentication={true} />,
       },
       {
         path: "profile",
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: "logout",
         element: <AuthLayout children={<Logout />} authentication={true} />,
+      },
+      {
+        path: "blog/:blogId",
+        element: <AuthLayout children={<Blog />} authentication={true} />,
       },
     ],
   },

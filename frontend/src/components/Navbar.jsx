@@ -7,7 +7,7 @@ function Navbar() {
   const authStatus = useStore((state) => state.authStatus);
 
   if (authStatus) {
-    navLinks.push({ url: "/add-posts", name: "Add" });
+    navLinks.push({ url: "/add-blog", name: "Add" });
     navLinks.push({ url: "/profile", name: "Profile" });
     navLinks.push({ url: "/logout", name: "Logout" });
   } else {

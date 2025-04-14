@@ -120,7 +120,7 @@ function SignUp() {
           </div>
           <button
             type="submit"
-            className="bg-purple-600 text-white duration-200 hover:bg-purple-500 px-4 py-2 text-xl mt-2 w-full"
+            className="bg-purple-600 rounded-lg text-white duration-200 hover:bg-purple-500 px-4 py-2 text-xl mt-2 w-full"
           >
             Sign up
           </button>

@@ -30,9 +30,21 @@ function Login() {
           setError(res.message);
           return;
         }
-        console.log(res.token);
         localStorage.setItem('token', res.token);
-        login();
+        fetch(`${import.meta.env.VITE_API_URL}/auth/verify`, {
+          headers: {
+            Authorization: `Bearer ${res.token}`,
+          },
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            if (res?.error) console.log(res.message);
+            else {
+              const user = res.user;
+              login(user);
+            }
+          })
+          .catch((err) => console.error(err));
         navigate("/");
       })
       .catch((error) => {
@@ -83,7 +95,7 @@ function Login() {
           </div>
           <button
             type="submit"
-            className="bg-purple-600 text-white duration-200 hover:bg-purple-500 px-4 py-2 text-xl mt-2 w-full"
+            className="bg-purple-600 rounded-lg text-white duration-200 hover:bg-purple-500 px-4 py-2 text-xl mt-2 w-full"
           >
             Login
           </button>
