@@ -20,7 +20,6 @@ function App() {
         .then((res) => {
           if (res?.error) {
             console.log(res.message);
-            logout();
           } else login(res);
         })
         .catch((err) => console.error(err));
