@@ -5,11 +5,11 @@ import useStore from "./store/store";
 
 function App() {
   const login = useStore((state) => state.login);
+  const logout = useStore((state) => state.logout);
   const authStatus = useStore((state) => state.authStatus);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-
     if (token && authStatus === null) {
       fetch(`${import.meta.env.VITE_API_URL}/auth/verify`, {
         headers: {
@@ -18,11 +18,13 @@ function App() {
       })
         .then((res) => res.json())
         .then((res) => {
-          if (res?.error) console.log(res.message);
-          else login(res);
+          if (res?.error) {
+            console.log(res.message);
+            logout();
+          } else login(res);
         })
         .catch((err) => console.error(err));
-    }
+    } else if(token === null) logout()
   }, [authStatus]);
 
   return (

@@ -3,7 +3,8 @@ const { createTokenForUser, validateToken } = require('../services/auth');
 
 async function register(req, res) {
     console.log(req.body)
-    const {name, email, password, role, profileImage} = req.body.userDetails;
+    const { name, email, password, role } = req.body.userDetails;
+    const profileImageUrl = req.file;
     if (!name || !email || !password || !role) {
         console.log('Missing user details');
         return res.status(400).json({ error: true, message: 'missing user details' });
