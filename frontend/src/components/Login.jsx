@@ -40,7 +40,7 @@ function Login() {
           .then((res) => {
             if (res?.error) console.log(res.message);
             else {
-              const user = res.user;
+              const user = res;
               login(user);
             }
           })
